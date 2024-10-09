@@ -1,4 +1,6 @@
 
+using Website.Repositories;
+
 namespace Website
 {
     public class Program
@@ -13,7 +15,11 @@ namespace Website
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
-
+            builder.Services.AddTransient<IProductsRepository, ProductsRepository>();
+            builder.Services.AddTransient<IProductTypeRepository, ProductTypeRepository>();
+            builder.Services.AddTransient<IProductOrderRepository, ProductOrderRepository>();
+            builder.Services.AddTransient<IOrdersRepository, OrdersRepository>();
+            builder.Services.AddTransient<IUserRepository, UserRepository>();
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
